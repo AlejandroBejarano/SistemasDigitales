@@ -46,50 +46,7 @@ Al declarar algo en el header, otros módulos de C/C++ saben cómo llamar a `crc
 
 
 ### crc32.c
-Este código en C implementa una interfaz para calcular y mostrar el CRC-32 de una cadena ingresada por el usuario:
-Donde primero se declara una tabla de 256 entradas la cual se precalcula para acelerar el proceso del cálculo del CRC.
-Después, se inicializa la tabla `crc32_table` con valores precalculados para cada byte por medio del `poly`, que es un polinomio estándar de CRC32.
 
-```bash
-#include <stdint.h>  
-
-static uint32_t crc32_table[256];
-
-
-void crc32_init() {
-    uint32_t poly = 0xedb88320;  // Polinomio estándar CRC32
-
-    for (uint32_t i = 0; i < 256; i++) {
-        uint32_t crc = i;
-        for (uint32_t j = 8; j > 0; j--) {
-            if (crc & 1)
-                crc = (crc >> 1) ^ poly;
-            else
-                crc >>= 1;
-        }
-        crc32_table[i] = crc;
-    }
-}
-
-
-```
-En este primer bucle lo que hace es recorrer cada posible valor de byte (i) y luego aplica el algoritmo del CRC 8 veces porque va bit a bit, para al final guardarlo en la tabla que se inicializó.
-
-```bash
-
-// Función CRC32
-uint32_t crc32j(uint8_t *data, uint32_t length) {
-    uint32_t crc = 0xFFFFFFFF;  // Valor inicial CRC
-    for (uint32_t i = 0; i < length; i++) {
-        uint8_t byte = data[i];
-        crc = (crc >> 8) ^ crc32_table[(crc ^ byte) & 0xFF];
-    }
-    return ~crc;  // Invertir los bits antes de retornar
-}
-
-```
-En el segundo bucle lo que realiza es el cálculo del arreglo `data` de un tamaño `lengt`, además de iniciar el crc con el valor `0xFFFFFFFF`
-Después recorre cada byte del arreglo y calcula un nuevo crc donde `crc>>8` elimina los 8 bits menos significativos y crc ^ byte` combina el byte actual con el crc previo y `& 0xFF` obtiene el byte menos significativo para después acceder a la tabla `crc32_table[...]` y por último `return ~crc;` que invierte el resultado final como parte del proceso para el CRC32.
 
 
 
@@ -164,11 +121,7 @@ Además se utilizó la página `https://emn178.github.io/online-tools/crc/`, par
 
 ### Para compilar
 
-Desde terminal en la carpeta `proy1`:
-```bash
-make clean
-```
-Para limpiar builds anteriores
+Desde terminal en la carpeta `Proyecto 1`:
 
 ```bash
 ./proy1.py --build-path=../build/sim
