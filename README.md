@@ -137,27 +137,27 @@ A este código se le realizaron pruebas en RARS para una rápida comprobación d
 
 
 A este código se le realizaron pruebas en RARS para una rápida comprobación de su funcionamiento, esto se observa en las siguientes imagenes:
-![Rars1](Proyecto_1/Fotos/rars1.png)
+![Rars1][Fotos/rars1.png]
 
 
 Para realizar la comprobación se utilizó la palabra `hola` que en hexadecimal es `616c6f68`, esta se colocó en el data segment en RARS, que es una sección de "memoria" del programa.
 
-![Rars2](Proyecto_1/Fotos/rars2.png)
+![Rars2](Fotos/rars2.png)
 
 Al escribir la palabra `hola` en "memoria" del programa, y identificando la dirección, está se escribió en el registro `a0`, y en el registro `a1` se le agrega la longitud de la palabra.
 
-![Rars3](Proyecto_1/Fotos/rars3.png)
+![Rars3](Fotos/rars3.png)
 
 
-![Rars4](Proyecto_1/Fotos/rars4.png)
+![Rars4](Fotos/rars4.png)
 
 Al correr el código en el registro `ao` se observó el resultado final.
 
-![Rars5](Proyecto_1/Fotos/rars5.png)
+![Rars5](Fotos/rars5.png)
 
 Además se utilizó la página `https://emn178.github.io/online-tools/crc/`, para realizar una comparación de resultados.
 
-![Rarsprueb](Proyecto_1/Fotos/pruebaasm.png)
+![Rarsprueb](Fotos/pruebaasm.png)
 
 
 
@@ -197,3 +197,5 @@ Si se crea un archivo de pruebas ejemplo: `prueba_crc.c`, se pueden hacer prueba
 [4] Y. N. Patt and S. J. Patel, Introduction to Computing Systems: From Bits & Gates to C & Beyond, 3rd ed. New York, NY, USA: McGraw-Hill Education, 2019.
 
 [5] D. Patterson and A. Waterman, Guía Práctica de RISC-V: El Atlas de una Arquitectura Abierta, 1st ed., ver. 1.0.5, transl. A. Lemus and E. Corpeño. RISC-V International, Jul. 2019.
+
+[def]: Proyecto_1/Fotos/rars1.png
