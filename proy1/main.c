@@ -1,6 +1,9 @@
 // This file is Copyright (c) 2020 Florent Kermarrec <florent@enjoy-digital.fr>
 // License: BSD
 
+
+#include "crc32.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -85,6 +88,7 @@ static void help(void)
 	puts("reboot             - Reboot CPU");
 	puts("helloc             - Hello C");
 	puts("add                - Adds two integer values");
+	puts("crc32              - Calcula CRC32 de una cadena de texto");
 }
 
 /*-----------------------------------------------------------------------*/
@@ -133,6 +137,8 @@ static void console_service(void)
 		helloc_cmd();
 	else if(strcmp(token, "add") == 0)
 		add_cmd();
+	else if (strcmp(token, "crc32") == 0)
+		calculate_crc();
 	prompt();
 }
 
