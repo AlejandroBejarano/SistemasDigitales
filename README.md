@@ -24,7 +24,10 @@ Declara dos funciones para calcular CRC-32: una en ensamblador (crc32_asm) que h
 
 #include <stdint.h>
 
-uint32_t crc32_asm(const uint8_t *data, uint32_t length, uint32_t crc);
+uint32_t crc32_asm(const uint8_t *data, uint32_t length);
+
+// Función para obtener entrada y mostrar resultado
+void calculate_crc(void);
 
 #enddif
 ```
@@ -34,8 +37,6 @@ uint32_t crc32_asm(const uint8_t *data, uint32_t length, uint32_t crc);
 `const uint8_t *data`, es un puntero a los datos  sobre los que se calcula el CRC, además "uint8_t", es un estándar para "byte" (8 bits), el "const" indica que la función no modificará el contenido de ese buffer (bloque de memoria que contiene datos).
 
 `uint32_t length` es el número de bytes en el buffer "data" que deben procesarse.
-
-`uint32_t crc` valor inicial del CRC, hace un cálculo incremental.
 
 CRC significa Cyclic Redundancy Check, es un algoritmo que genera un valor de verificación para detectar errores en datos transmitidos o almacenados.
 
@@ -55,7 +56,7 @@ Al declarar algo en el header, otros módulos de C/C++ saben cómo llamar a `crc
 Nombras los archivos objeto que se van a generar de la compilacion de los codigos fuente
 
 ```bash
-OBJECTS=" crc32.o crc32_asm.o main.c crt0.o"
+OBJECTS   = helloc.o add_asm.o add.o crt0.o main.o crc32_asm.o crc32.o
 ```
 
 ### crc32_asm.S
@@ -124,8 +125,15 @@ Además se utilizó la página `https://emn178.github.io/online-tools/crc/`, par
 Desde terminal en la carpeta `Proyecto 1`:
 
 ```bash
-./proy1.py --build-path=../build/sim
+litex_sim --integrated-main-ram-size=0x10000 --cpu-type=vexriscv --no-compile-gateware
 ```
+
+```bash
+/home/alejandrobejaro24/proy1-1S2025-3/proy1/proy1.py --build-path=../build/sim
+```
+
+Para el comando anterior se encontraron problemas con la dirección del path de proy1 por lo que se le agregó python3 al inicio, además que para compilar el código se debe cambiar la dirección de proy1, en cada maquina, según donde guarda la carpeta.
+
 Para compilar un nuevo binario.
 
 Ejecutar en Litex:
@@ -133,7 +141,7 @@ Ejecutar en Litex:
 litex_sim --integrated-main-ram-size=0x10000 --cpu-type=vexriscv --ram-init=./proy1/proy1.bin
 ```
 
-Si se crea un archivo de pruebas ejemplo: `prueba_crc.c`, se pueden hacer pruebas en C antes de Litex
+
 
 
 
