@@ -122,7 +122,7 @@ Además se utilizó la página `https://emn178.github.io/online-tools/crc/`, par
 
 ### Para compilar
 
-Desde terminal en la carpeta `Proyecto 1`:
+Desde terminal en la carpeta `proy1`:
 
 ```bash
 litex_sim --integrated-main-ram-size=0x10000 --cpu-type=vexriscv --no-compile-gateware
